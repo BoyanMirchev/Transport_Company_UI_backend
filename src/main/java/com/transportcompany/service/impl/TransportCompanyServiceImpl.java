@@ -36,7 +36,7 @@ public class TransportCompanyServiceImpl implements TransportCompanyService {
     @Override
     public void update(TransportCompany company) {
         getById(company.getId());
-        repository.update(company);
+        repository.merge(company);
     }
 
     @Override

@@ -31,6 +31,19 @@ public class Employee {
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal salary;
 
+    @PrePersist
+    @PreUpdate
+    private void validate() {
+        if (firstName == null || firstName.isBlank())
+            throw new com.transportcompany.exceptions.InvalidDataException("First name required");
+        if (lastName == null || lastName.isBlank())
+            throw new com.transportcompany.exceptions.InvalidDataException("Last name required");
+        if (salary == null)
+            throw new com.transportcompany.exceptions.InvalidDataException("Salary required");
+        if (salary.compareTo(java.math.BigDecimal.ZERO) < 0)
+            throw new com.transportcompany.exceptions.InvalidDataException("Salary cannot be negative");
+    }
+
     // Many employees belong to one company
     @ManyToOne
     @JoinColumn(name = "company_id")

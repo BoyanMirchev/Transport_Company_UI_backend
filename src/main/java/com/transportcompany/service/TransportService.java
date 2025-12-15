@@ -1,23 +1,17 @@
 package com.transportcompany.service;
 
-import com.transportcompany.entity.Transport;
-
+import com.transportcompany.dto.TransportDTO;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface TransportService {
-
-    Transport getById(Integer id);
-
-    List<Transport> getAll();
-
-    void create(Transport transport);
-
-    void update(Transport transport);
-
+    TransportDTO getById(Integer id);
+    List<TransportDTO> getAll();
+    TransportDTO create(TransportDTO dto);
+    TransportDTO update(TransportDTO dto);
     void delete(Integer id);
 
-    // Допълнителни заявки
-    List<Transport> getTransportsByClientId(Integer clientId);
-    List<Transport> getTransportsByVehicleId(Integer vehicleId);
-    List<Transport> getTransportsByEmployeeId(Integer employeeId);
+    List<TransportDTO> getByClientId(Integer clientId);
+    List<TransportDTO> getPaidByCompany(Integer companyId);
+    List<TransportDTO> getByDepartureBetween(LocalDate from, LocalDate to);
 }

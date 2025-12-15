@@ -12,10 +12,9 @@ public class ClientMapper {
                 .id(entity.getId())
                 .name(entity.getName())
                 .email(entity.getEmail())
-                .phone(entity.getPhone())
-                .address(entity.getAddress())
-                .debtor(entity.isDebtor())
-                .companyId(entity.getCompany() != null ? entity.getCompany().getId() : null)
+                .companyId(
+                        entity.getCompany() != null ? entity.getCompany().getId() : null
+                )
                 .build();
     }
 
@@ -23,17 +22,11 @@ public class ClientMapper {
         if (dto == null) return null;
 
         Client client = new Client();
-
-        if (dto.getId() != null)
+        if (dto.getId() != null) {
             client.setId(dto.getId());
-
+        }
         client.setName(dto.getName());
         client.setEmail(dto.getEmail());
-        client.setPhone(dto.getPhone());
-        client.setAddress(dto.getAddress());
-        client.setDebtor(dto.isDebtor());
-
-        // Свързването на company се прави в service слоя
         return client;
     }
 }

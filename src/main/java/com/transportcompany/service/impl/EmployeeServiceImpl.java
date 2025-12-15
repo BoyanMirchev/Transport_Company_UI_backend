@@ -5,6 +5,7 @@ import com.transportcompany.exceptions.EntityNotFoundException;
 import com.transportcompany.repository.EmployeeRepository;
 import com.transportcompany.service.EmployeeService;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,7 +37,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (employee.getLastName() == null || employee.getLastName().isBlank())
             throw new IllegalArgumentException("Employee last name cannot be empty");
 
-        if (employee.getSalary() != null && employee.getSalary() < 0)
+        if (employee.getSalary() != null && employee.getSalary().compareTo(BigDecimal.ZERO) < 0)
             throw new IllegalArgumentException("Salary cannot be negative");
 
         repository.save(employee);
@@ -52,10 +53,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (employee.getLastName() == null || employee.getLastName().isBlank())
             throw new IllegalArgumentException("Employee last name cannot be empty");
 
-        if (employee.getSalary() != null && employee.getSalary() < 0)
+        if (employee.getSalary() != null && employee.getSalary().compareTo(BigDecimal.ZERO) < 0)
             throw new IllegalArgumentException("Salary cannot be negative");
 
-        repository.update(employee);
+        repository.merge(employee);
     }
 
     @Override

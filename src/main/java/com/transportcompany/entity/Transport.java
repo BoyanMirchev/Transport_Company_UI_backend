@@ -1,7 +1,9 @@
 package com.transportcompany.entity;
 
+import com.transportcompany.exceptions.InvalidDataException;
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.time.LocalDate;
 
 @Entity
@@ -16,15 +18,15 @@ public class Transport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "transport_id")
-    private int id;
+    private Integer id;
 
-    @Column(name = "start_point")
+    @Column(name = "start_point", nullable = false)
     private String startPoint;
 
-    @Column(name = "end_point")
+    @Column(name = "end_point", nullable = false)
     private String endPoint;
 
-    @Column(name = "departure_date")
+    @Column(name = "departure_date", nullable = false)
     private LocalDate departureDate;
 
     @Column(name = "arrival_date")
@@ -36,34 +38,54 @@ public class Transport {
     @Column(name = "cargo_weight")
     private Double cargoWeight;
 
-    @Column(name = "is_paid")
+    @Column(name = "is_paid", nullable = false)
     private boolean paid;
 
-    // Many transports -> One vehicle
-    @ManyToOne
-    @JoinColumn(name = "vehicle_id")
+    // ========= RELATIONS =========
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "vehicle_id", nullable = false)
     private Vehicle vehicle;
 
-    // Many transports -> One employee (driver)
-    @ManyToOne
-    @JoinColumn(name = "employee_id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
 
-    // Many transports -> One client
-    @ManyToOne
-    @JoinColumn(name = "client_id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 
-    // Many transports -> One company
-    @ManyToOne
-    @JoinColumn(name = "company_id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "company_id", nullable = false)
     private TransportCompany company;
 
-    // Many transports -> One price reference
-    @ManyToOne
-    @JoinColumn(name = "price_id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "price_id", nullable = false)
     private Price price;
+
+    // ========= DOMAIN INVARIANTS =========
+
+    @PrePersist
+    @PreUpdate
+    private void validate() {
+
+        if (startPoint == null || startPoint.isBlank())
+            throw new InvalidDataException("Start point is required");
+
+        if (endPoint == null || endPoint.isBlank())
+            throw new InvalidDataException("End point is required");
+
+        if (departureDate == null)
+            throw new InvalidDataException("Departure date is required");
+
+        if (arrivalDate != null && arrivalDate.isBefore(departureDate))
+            throw new InvalidDataException("Arrival date cannot be before departure date");
+
+        if (cargoWeight != null && cargoWeight < 0)
+            throw new InvalidDataException("Cargo weight cannot be negative");
+    }
 }
+
 //                     ЛОГИКА НА ВРЪЗКИТЕ
 //              @ManyToOne — правилната релация за всички FK
 //              -> Всеки transport има 1 vehicle

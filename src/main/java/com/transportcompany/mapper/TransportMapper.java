@@ -5,32 +5,36 @@ import com.transportcompany.entity.Transport;
 
 public class TransportMapper {
 
-    public static TransportDTO toDTO(Transport transport) {
-        if (transport == null) return null;
-
+    public static TransportDTO toDTO(Transport t) {
+        if (t == null) return null;
         return TransportDTO.builder()
-                .id(transport.getId())
-                .startPoint(transport.getStartPoint())
-                .endPoint(transport.getEndPoint())
-                .departureDate(transport.getDepartureDate())
-                .arrivalDate(transport.getArrivalDate())
-                .clientId(transport.getClient() != null ? transport.getClient().getId() : null)
-                .employeeId(transport.getEmployee() != null ? transport.getEmployee().getId() : null)
-                .vehicleId(transport.getVehicle() != null ? transport.getVehicle().getId() : null)
-                .priceId(transport.getPrice() != null ? transport.getPrice().getId() : null)
-                .companyId(transport.getCompany() != null ? transport.getCompany().getId() : null)
+                .id(t.getId())
+                .startPoint(t.getStartPoint())
+                .endPoint(t.getEndPoint())
+                .departureDate(t.getDepartureDate())
+                .arrivalDate(t.getArrivalDate())
+                .cargoDescription(t.getCargoDescription())
+                .cargoWeight(t.getCargoWeight())
+                .paid(t.isPaid())
+                .clientId(t.getClient() != null ? t.getClient().getId() : null)
+                .employeeId(t.getEmployee() != null ? t.getEmployee().getId() : null)
+                .vehicleId(t.getVehicle() != null ? t.getVehicle().getId() : null)
+                .companyId(t.getCompany() != null ? t.getCompany().getId() : null)
+                .priceId(t.getPrice() != null ? t.getPrice().getId() : null)
                 .build();
     }
 
     public static Transport toEntity(TransportDTO dto) {
         if (dto == null) return null;
-
         Transport t = new Transport();
         t.setId(dto.getId());
         t.setStartPoint(dto.getStartPoint());
         t.setEndPoint(dto.getEndPoint());
         t.setDepartureDate(dto.getDepartureDate());
         t.setArrivalDate(dto.getArrivalDate());
+        t.setCargoDescription(dto.getCargoDescription());
+        t.setCargoWeight(dto.getCargoWeight());
+        t.setPaid(dto.isPaid());
         return t;
     }
 }

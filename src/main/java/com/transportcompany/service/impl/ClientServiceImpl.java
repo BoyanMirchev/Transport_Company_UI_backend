@@ -1,67 +1,80 @@
 package com.transportcompany.service.impl;
 
+import com.transportcompany.dto.ClientDTO;
 import com.transportcompany.entity.Client;
+import com.transportcompany.entity.TransportCompany;
 import com.transportcompany.exceptions.EntityNotFoundException;
+import com.transportcompany.mapper.ClientMapper;
 import com.transportcompany.repository.ClientRepository;
+import com.transportcompany.repository.TransportCompanyRepository;
 import com.transportcompany.service.ClientService;
+import com.transportcompany.validation.ClientValidator;
 
 import java.util.List;
 
 public class ClientServiceImpl implements ClientService {
 
-    private final ClientRepository repository = new ClientRepository();
+    private final ClientRepository repo = new ClientRepository();
+    private final TransportCompanyRepository companyRepo = new TransportCompanyRepository();
 
     @Override
-    public Client getById(Integer id) {
-        Client client = repository.findById(id);
-        if (client == null) {
-            throw new EntityNotFoundException("Client with ID " + id + " not found");
-        }
-        return client;
+    public ClientDTO getById(Integer id) {
+        Client c = repo.findById(id);
+        if (c == null) throw new EntityNotFoundException("Client with ID " + id + " not found");
+        return ClientMapper.toDTO(c);
     }
 
     @Override
-    public List<Client> getAll() {
-        return repository.findAll();
+    public List<ClientDTO> getAll() {
+        return repo.findAll().stream().map(ClientMapper::toDTO).toList();
     }
 
     @Override
-    public void create(Client client) {
+    public ClientDTO create(ClientDTO dto) {
+        ClientValidator.validateForCreate(dto);
 
-        // Валидация
-        if (client.getName() == null || client.getName().isBlank()) {
-            throw new IllegalArgumentException("Client name cannot be empty");
-        }
+        Client entity = ClientMapper.toEntity(dto);
+        TransportCompany company = companyRepo.findById(dto.getCompanyId());
+        if (company == null) throw new EntityNotFoundException("Company with ID " + dto.getCompanyId() + " not found");
 
-        if (client.getEmail() != null && client.getEmail().isBlank()) {
-            throw new IllegalArgumentException("Email cannot be blank");
-        }
-
-        repository.save(client);
+        entity.setCompany(company);
+        repo.save(entity);
+        return ClientMapper.toDTO(entity);
     }
 
     @Override
-    public void update(Client client) {
-        // Проверка дали съществува
-        getById(client.getId());
+    public ClientDTO update(ClientDTO dto) {
+        if (dto == null || dto.getId() == null) throw new com.transportcompany.exceptions.InvalidDataException("Client id required for update");
+        // ensure exists
+        repo.findById(dto.getId()); // can be null; check properly:
+        Client existing = repo.findById(dto.getId());
+        if (existing == null) throw new EntityNotFoundException("Client with ID " + dto.getId() + " not found");
 
-        repository.update(client);
+        existing.setName(dto.getName());
+        existing.setEmail(dto.getEmail());
+
+
+        if (dto.getCompanyId() != null) {
+            TransportCompany company = companyRepo.findById(dto.getCompanyId());
+            if (company == null) throw new EntityNotFoundException("Company with ID " + dto.getCompanyId() + " not found");
+            existing.setCompany(company);
+        }
+
+        repo.merge(existing);
+        return ClientMapper.toDTO(existing);
     }
 
     @Override
     public void delete(Integer id) {
-        Client client = getById(id);
-        repository.delete(client);
+        Client c = repo.findById(id);
+        if (c == null) throw new EntityNotFoundException("Client with ID " + id + " not found");
+        repo.delete(c);
     }
 
     @Override
-    public Client findByEmail(String email) {
-        List<Client> allClients = repository.findAll();
-
-        return allClients.stream()
-                .filter(c -> email.equalsIgnoreCase(c.getEmail()))
-                .findFirst()
-                .orElseThrow(() ->
-                        new EntityNotFoundException("Client with email " + email + " not found"));
+    public ClientDTO findByEmail(String email) {
+        Client c = repo.findByEmail(email);
+        if (c == null) throw new EntityNotFoundException("Client with email " + email + " not found");
+        return ClientMapper.toDTO(c);
     }
 }

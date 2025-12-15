@@ -68,7 +68,7 @@ public class VehicleServiceImpl implements VehicleService {
             throw new IllegalArgumentException("Registration number cannot be empty");
         }
 
-        repository.update(vehicle);
+        repository.merge(vehicle);
     }
 
     @Override

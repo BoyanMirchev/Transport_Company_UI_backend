@@ -42,7 +42,7 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public void update(Ticket ticket) {
         getById(ticket.getId());
-        repository.update(ticket);
+        repository.merge(ticket);
     }
 
     @Override

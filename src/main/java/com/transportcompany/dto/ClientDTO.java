@@ -1,5 +1,8 @@
 package com.transportcompany.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Getter
@@ -10,11 +13,13 @@ import lombok.*;
 public class ClientDTO {
 
     private Integer id;
-    private String name;
-    private String email;
-    private String phone;
-    private String address;
 
-    private boolean debtor;
+    @NotBlank
+    private String name;
+
+    @Email
+    private String email;
+
+    @NotNull
     private Integer companyId;
 }

@@ -5,6 +5,7 @@ import com.transportcompany.exceptions.EntityNotFoundException;
 import com.transportcompany.repository.PriceRepository;
 import com.transportcompany.service.PriceService;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class PriceServiceImpl implements PriceService {
@@ -36,7 +37,7 @@ public class PriceServiceImpl implements PriceService {
             throw new IllegalArgumentException("Price cannot be null");
         }
 
-        if (price.getAmount() < 0) {
+        if (price.getAmount().compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("Price cannot be negative");
         }
 
@@ -53,11 +54,11 @@ public class PriceServiceImpl implements PriceService {
         // проверка дали съществува
         getById(price.getId());
 
-        if (price.getAmount() < 0) {
+        if (price.getAmount().compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("Price cannot be negative");
         }
 
-        repository.update(price);
+        repository.merge(price);
     }
 
     @Override
