@@ -12,7 +12,7 @@ import lombok.*;
 @Builder
 public class ClientDTO {
 
-    private Integer id;
+    private Long id;
 
     @NotBlank
     private String name;
@@ -21,5 +21,5 @@ public class ClientDTO {
     private String email;
 
     @NotNull
-    private Integer companyId;
+    private Long companyId;
 }

@@ -20,3 +20,4 @@ public class EmployeeRepository extends BaseRepository<Employee> {
                 .getResultList());
     }
 }
+// Тестове, където има заявки

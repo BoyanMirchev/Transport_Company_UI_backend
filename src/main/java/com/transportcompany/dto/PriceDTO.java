@@ -9,6 +9,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Builder
 public class PriceDTO {
-    private Integer id;
+    private Long id;
     private BigDecimal amount;
 }

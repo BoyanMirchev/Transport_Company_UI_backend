@@ -18,7 +18,7 @@ public class Transport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "transport_id")
-    private Integer id;
+    private Long id;
 
     @Column(name = "start_point", nullable = false)
     private String startPoint;

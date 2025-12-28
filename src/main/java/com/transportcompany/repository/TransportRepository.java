@@ -7,14 +7,14 @@ import java.util.List;
 public class TransportRepository extends BaseRepository<Transport> {
     public TransportRepository() { super(Transport.class); }
 
-    public List<Transport> findByClientId(Integer clientId) {
+    public List<Transport> findByClientId(Long clientId) {
         return inSession(s -> s.createQuery(
                         "select t from Transport t where t.client.id = :id", Transport.class)
                 .setParameter("id", clientId)
                 .getResultList());
     }
 
-    public List<Transport> findPaidByCompany(Integer companyId) {
+    public List<Transport> findPaidByCompany(Long companyId) {
         return inSession(s -> s.createQuery(
                         "select t from Transport t where t.company.id = :cid and t.paid = true", Transport.class)
                 .setParameter("cid", companyId)

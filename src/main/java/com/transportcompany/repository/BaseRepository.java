@@ -1,7 +1,6 @@
 package com.transportcompany.repository;
 
 import com.transportcompany.config.HibernateTx;
-import org.hibernate.Session;
 
 import java.util.List;
 
@@ -13,13 +12,14 @@ public abstract class BaseRepository<T> {
         this.entityClass = entityClass;
     }
 
-    public T findById(Integer id) {
+    public T findById(Long id) {
         return HibernateTx.inTx(s -> s.get(entityClass, id));
     }
 
     public List<T> findAll() {
         return HibernateTx.inTx(s ->
-                s.createQuery("from " + entityClass.getSimpleName(), entityClass).getResultList()
+                s.createQuery("from " + entityClass.getSimpleName(), entityClass)
+                        .getResultList()
         );
     }
 
@@ -28,15 +28,15 @@ public abstract class BaseRepository<T> {
     }
 
     public T merge(T entity) {
-        return HibernateTx.inTx(s -> (T) s.merge(entity));
+        return HibernateTx.inTx(s -> s.merge(entity));
     }
 
     public void delete(T entity) {
         HibernateTx.inTxVoid(s -> s.remove(entity));
     }
-
-    // helper за кастъм query в наследниците
-    protected <R> R inSession(java.util.function.Function<Session, R> work) {
+    protected <R> R inSession(java.util.function.Function<org.hibernate.Session, R> work) {
         return HibernateTx.inTx(work);
     }
 }
+
+

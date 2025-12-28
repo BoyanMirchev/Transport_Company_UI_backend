@@ -4,6 +4,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
+import static com.transportcompany.config.HibernateTx.inTx;
+
 public class HibernateTestUtil {
 
     private static final SessionFactory sessionFactory = buildSessionFactory();
@@ -21,8 +23,6 @@ public class HibernateTestUtil {
             throw new RuntimeException("Failed to build TEST SessionFactory", e);
         }
     }
-
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
     }
-}
+
+

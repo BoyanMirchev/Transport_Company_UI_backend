@@ -1,5 +1,6 @@
 package com.transportcompany.dto;
 
+import com.transportcompany.entity.VehicleType;
 import lombok.*;
 
 @Getter
@@ -9,10 +10,10 @@ import lombok.*;
 @Builder
 public class VehicleDTO {
 
-    private Integer id;
+    private Long id;
     private String registrationNumber;
-    private String type;
+    private VehicleType type;
     private Double capacityTons;
+    private Long companyId;
 
-    private Integer companyId;
 }

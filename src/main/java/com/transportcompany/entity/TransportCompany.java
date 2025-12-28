@@ -4,6 +4,7 @@ package com.transportcompany.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.Set;
 
 @Entity
@@ -18,7 +19,7 @@ public class TransportCompany {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "company_id")
-    private Integer id;
+    private Long id;
 
     @Column(nullable = false)
     private String name;
@@ -27,7 +28,7 @@ public class TransportCompany {
 
     private String phone;
 
-    private double revenue;
+    private BigDecimal revenue;
 
     // Relationships
     @OneToMany(mappedBy = "company")

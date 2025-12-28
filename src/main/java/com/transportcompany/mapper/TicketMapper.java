@@ -11,20 +11,21 @@ public class TicketMapper {
         return TicketDTO.builder()
                 .id(ticket.getId())
                 .name(ticket.getName())
-                .price(ticket.getPrice() != null ? ticket.getPrice().getAmount() : null)
+                .price(
+                        ticket.getPrice() != null
+                                ? ticket.getPrice().getAmount()
+                                : null
+                )
                 .build();
     }
 
+    // Entity се сглобява в service слоя (Price се взима по ID там)
     public static Ticket toEntity(TicketDTO dto) {
         if (dto == null) return null;
 
         Ticket ticket = new Ticket();
         ticket.setId(dto.getId());
         ticket.setName(dto.getName());
-
-        // Price се set-ва в Service слоя, не тук.
-        // Clients също се set-ват в Service слоя.
-
         return ticket;
     }
 }

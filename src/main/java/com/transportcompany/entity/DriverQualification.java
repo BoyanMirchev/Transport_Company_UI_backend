@@ -17,7 +17,7 @@ public class DriverQualification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "qualification_id")
-    private int id;
+    private Long id;
 
     @Column(name = "qualification_name", nullable = false)
     private String name;

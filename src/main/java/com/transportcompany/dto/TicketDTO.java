@@ -9,9 +9,12 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class TicketDTO {
 
-    private Integer id;
+    private Long id;
     private String name;
     private BigDecimal price;     // amount от Price
+
+
 }             // BigDecimal

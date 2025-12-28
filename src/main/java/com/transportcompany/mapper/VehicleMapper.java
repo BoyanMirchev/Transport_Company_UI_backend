@@ -12,7 +12,7 @@ public class VehicleMapper {
         return VehicleDTO.builder()
                 .id(entity.getId())
                 .registrationNumber(entity.getRegistrationNumber())
-                .type(entity.getType() != null ? entity.getType().name() : null)
+                .type(entity.getType())
                 .capacityTons(entity.getCapacityTons())
                 .companyId(entity.getCompany() != null ? entity.getCompany().getId() : null)
                 .build();
@@ -21,21 +21,22 @@ public class VehicleMapper {
     public static Vehicle toEntity(VehicleDTO dto) {
         if (dto == null) return null;
 
-        Vehicle vehicle = new Vehicle();
-
-        if (dto.getId() != null) {
-            vehicle.setId(dto.getId());
-        }
-
-        vehicle.setRegistrationNumber(dto.getRegistrationNumber());
-        vehicle.setCapacityTons(dto.getCapacityTons());
-
+        Vehicle v = new Vehicle();
+        v.setId(dto.getId());
+        v.setRegistrationNumber(dto.getRegistrationNumber());
+        v.setCapacityTons(dto.getCapacityTons());
 
         if (dto.getType() != null) {
-            vehicle.setType(VehicleType.valueOf(dto.getType()));
+            try {
+                v.setType((dto.getType()));
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException(
+                        "Invalid vehicle type: " + dto.getType()
+                );
+            }
         }
 
-        // company се set-ва в service слоя
-        return vehicle;
+        return v;
     }
 }
+

@@ -10,19 +10,26 @@ public final class HibernateTx {
     private HibernateTx() {}
 
     public static <T> T inTx(Function<Session, T> work) {
-        Transaction tx = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            tx = session.beginTransaction();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        try {
             T result = work.apply(session);
             tx.commit();
             return result;
         } catch (RuntimeException ex) {
-            if (tx != null) tx.rollback();
+            if (tx.isActive()) {
+                tx.rollback();
+            }
             throw ex;
+        } finally {
+            session.close();
         }
     }
 
     public static void inTxVoid(java.util.function.Consumer<Session> work) {
-        inTx(session -> { work.accept(session); return null; });
+        inTx(session -> {
+            work.accept(session);
+            return null;
+        });
     }
 }

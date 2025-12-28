@@ -9,10 +9,10 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Builder
 public class EmployeeDTO {
-    private Integer id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String position;
     private BigDecimal salary;
-    private Integer companyId;
+    private Long companyId;
 }   // Трябва заплатата да е BigDecimal

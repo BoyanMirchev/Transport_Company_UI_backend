@@ -9,7 +9,14 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 public class TransportDTO {
-    private Integer id;
+
+    private Long id;
+    private Long clientId;
+    private Long employeeId;
+    private Long vehicleId;
+    private Long companyId;
+    private Long priceId;
+
     private String startPoint;
     private String endPoint;
     private LocalDate departureDate;
@@ -18,10 +25,4 @@ public class TransportDTO {
     private String cargoDescription;
     private Double cargoWeight;
     private boolean paid;
-
-    private Integer clientId;
-    private Integer employeeId;
-    private Integer vehicleId;
-    private Integer companyId;
-    private Integer priceId;
 }

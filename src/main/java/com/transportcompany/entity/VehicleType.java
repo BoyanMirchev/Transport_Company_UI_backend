@@ -6,5 +6,5 @@ public enum VehicleType {
     Tanker,
     Trailer,
     Other
-                      //             ✔ ENUM в MySQL се мапва на EnumType.STRING
+                      //              ENUM в MySQL се мапва на EnumType.STRING
 }

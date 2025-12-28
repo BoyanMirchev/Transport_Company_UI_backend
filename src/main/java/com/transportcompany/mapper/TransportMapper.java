@@ -7,6 +7,7 @@ public class TransportMapper {
 
     public static TransportDTO toDTO(Transport t) {
         if (t == null) return null;
+
         return TransportDTO.builder()
                 .id(t.getId())
                 .startPoint(t.getStartPoint())
@@ -24,10 +25,19 @@ public class TransportMapper {
                 .build();
     }
 
+    //
+   //   Entity се доизгражда в service слоя
+   //   - Client
+    //  - Employee
+    //  - Vehicle
+    //  - Company
+    //  - Price
+    //
     public static Transport toEntity(TransportDTO dto) {
         if (dto == null) return null;
+
         Transport t = new Transport();
-        t.setId(dto.getId());
+        t.setId(dto.getId()); // null при create, OK
         t.setStartPoint(dto.getStartPoint());
         t.setEndPoint(dto.getEndPoint());
         t.setDepartureDate(dto.getDepartureDate());

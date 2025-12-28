@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @Builder
 public class TransportCompanyDTO {
 
-    private Integer id;
+    private Long id;
     private String name;
     private String address;
     private String phone;

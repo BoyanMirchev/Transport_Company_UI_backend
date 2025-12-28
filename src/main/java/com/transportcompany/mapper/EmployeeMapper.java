@@ -24,16 +24,16 @@ public class EmployeeMapper {
 
         Employee e = new Employee();
 
-        // ⚠️ ID се сетва САМО ако не е null (важно за create vs update)
+        // ️ ID се сетва САМО ако не е null важно за create vs update
         if (dto.getId() != null) {
             e.setId(dto.getId());
         }
 
         e.setFirstName(dto.getFirstName());
         e.setLastName(dto.getLastName());
-        e.setSalary(dto.getSalary()); // BigDecimal -> BigDecimal (OK)
+        e.setSalary(dto.getSalary());
 
-        // ❗ Company НЕ се сетва тук
+        //  Company НЕ се сетва тук
         // ЩЕ се сетне в Service слоя след fetch по companyId
 
         return e;
