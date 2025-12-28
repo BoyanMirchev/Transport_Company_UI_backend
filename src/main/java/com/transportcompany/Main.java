@@ -62,7 +62,7 @@ public class Main {
         // 5. Vehicle
         VehicleDTO vehicle = vehicleService.create(
                 VehicleDTO.builder()
-                        .registrationNumber("CB1262ВЕ")
+                        .registrationNumber("CB1473BE")
                         .type(VehicleType.Truck)
                         .capacityTons(5.0)
                         .companyId(company.getId())
@@ -83,14 +83,6 @@ public class Main {
                         .build()
         );
 
-
-
-       try {
-            TicketDTO ticket = service.getById(1L);
-            System.out.println(ticket);
-        } catch (IllegalArgumentException | EntityNotFoundException e) {
-            System.out.println("ERROR: " + e.getMessage());
-        }
 
         try {
             EmployeeDTO fetchedEmployee = employeeService.getById(employee.getId());
