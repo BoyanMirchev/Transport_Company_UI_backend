@@ -1,4 +1,4 @@
-package com.transportcompany.serviceImplTest;
+package com.transportcompany.serviceImpl;
 
 import com.transportcompany.dto.PriceDTO;
 import java.util.List;

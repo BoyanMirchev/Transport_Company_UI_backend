@@ -1,4 +1,4 @@
-package com.transportcompany.serviceImplTest;
+package com.transportcompany.serviceImpl;
 
 import java.util.List;
 

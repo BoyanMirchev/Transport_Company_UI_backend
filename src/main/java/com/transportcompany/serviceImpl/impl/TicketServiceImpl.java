@@ -1,4 +1,4 @@
-package com.transportcompany.serviceImplTest.impl;
+package com.transportcompany.serviceImpl.impl;
 
 import com.transportcompany.dto.TicketDTO;
 import com.transportcompany.entity.Price;
@@ -7,7 +7,7 @@ import com.transportcompany.exceptions.EntityNotFoundException;
 import com.transportcompany.mapper.TicketMapper;
 import com.transportcompany.repository.PriceRepository;
 import com.transportcompany.repository.TicketRepository;
-import com.transportcompany.serviceImplTest.TicketService;
+import com.transportcompany.serviceImpl.TicketService;
 
 import java.util.List;
 

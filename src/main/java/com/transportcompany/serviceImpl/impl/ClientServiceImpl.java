@@ -1,4 +1,4 @@
-package com.transportcompany.serviceImplTest.impl;
+package com.transportcompany.serviceImpl.impl;
 
 import com.transportcompany.dto.ClientDTO;
 import com.transportcompany.entity.Client;
@@ -7,7 +7,7 @@ import com.transportcompany.exceptions.EntityNotFoundException;
 import com.transportcompany.mapper.ClientMapper;
 import com.transportcompany.repository.ClientRepository;
 import com.transportcompany.repository.TransportCompanyRepository;
-import com.transportcompany.serviceImplTest.ClientService;
+import com.transportcompany.serviceImpl.ClientService;
 import com.transportcompany.validation.ClientValidator;
 
 import java.util.List;

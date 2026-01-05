@@ -1,11 +1,11 @@
-package com.transportcompany.serviceImplTest.impl;
+package com.transportcompany.serviceImpl.impl;
 
 import com.transportcompany.dto.PriceDTO;
 import com.transportcompany.entity.Price;
 import com.transportcompany.exceptions.EntityNotFoundException;
 import com.transportcompany.mapper.PriceMapper;
 import com.transportcompany.repository.PriceRepository;
-import com.transportcompany.serviceImplTest.PriceService;
+import com.transportcompany.serviceImpl.PriceService;
 
 import java.math.BigDecimal;
 import java.util.List;

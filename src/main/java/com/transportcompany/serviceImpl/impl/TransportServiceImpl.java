@@ -1,11 +1,11 @@
-package com.transportcompany.serviceImplTest.impl;
+package com.transportcompany.serviceImpl.impl;
 
 import com.transportcompany.dto.TransportDTO;
 import com.transportcompany.entity.*;
 import com.transportcompany.exceptions.EntityNotFoundException;
 import com.transportcompany.mapper.TransportMapper;
 import com.transportcompany.repository.*;
-import com.transportcompany.serviceImplTest.TransportService;
+import com.transportcompany.serviceImpl.TransportService;
 
 import java.util.List;
 

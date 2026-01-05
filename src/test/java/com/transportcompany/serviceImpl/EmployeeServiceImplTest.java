@@ -1,10 +1,10 @@
-package com.transportcompany.serviceImplTest;
+package com.transportcompany.serviceImpl;
 
 import com.transportcompany.dto.EmployeeDTO;
 import com.transportcompany.entity.TransportCompany;
 import com.transportcompany.exceptions.EntityNotFoundException;
 import com.transportcompany.repository.TransportCompanyRepository;
-import com.transportcompany.serviceImplTest.impl.EmployeeServiceImpl;
+import com.transportcompany.serviceImpl.impl.EmployeeServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

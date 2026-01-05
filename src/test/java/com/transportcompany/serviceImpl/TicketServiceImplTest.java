@@ -1,14 +1,12 @@
-package com.transportcompany.serviceImplTest;
+package com.transportcompany.serviceImpl;
 
-import com.transportcompany.config.HibernateTestUtil;
 import com.transportcompany.dto.TicketDTO;
 import com.transportcompany.exceptions.EntityNotFoundException;
-import com.transportcompany.serviceImplTest.impl.TicketServiceImpl;
+import com.transportcompany.serviceImpl.impl.TicketServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -3,8 +3,8 @@ package com.transportcompany;
 import com.transportcompany.dto.*;
 import com.transportcompany.entity.VehicleType;
 import com.transportcompany.exceptions.EntityNotFoundException;
-import com.transportcompany.serviceImplTest.*;
-import com.transportcompany.serviceImplTest.impl.*;
+import com.transportcompany.serviceImpl.*;
+import com.transportcompany.serviceImpl.impl.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -62,7 +62,7 @@ public class Main {
         // 5. Vehicle
         VehicleDTO vehicle = vehicleService.create(
                 VehicleDTO.builder()
-                        .registrationNumber("CB1473BE")
+                        .registrationNumber("CB3374BE")
                         .type(VehicleType.Truck)
                         .capacityTons(5.0)
                         .companyId(company.getId())

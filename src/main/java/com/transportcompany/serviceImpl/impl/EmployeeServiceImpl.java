@@ -1,4 +1,4 @@
-package com.transportcompany.serviceImplTest.impl;
+package com.transportcompany.serviceImpl.impl;
 
 import com.transportcompany.dto.EmployeeDTO;
 import com.transportcompany.entity.Employee;
@@ -7,7 +7,7 @@ import com.transportcompany.exceptions.EntityNotFoundException;
 import com.transportcompany.mapper.EmployeeMapper;
 import com.transportcompany.repository.EmployeeRepository;
 import com.transportcompany.repository.TransportCompanyRepository;
-import com.transportcompany.serviceImplTest.EmployeeService;
+import com.transportcompany.serviceImpl.EmployeeService;
 
 import java.math.BigDecimal;
 import java.util.List;

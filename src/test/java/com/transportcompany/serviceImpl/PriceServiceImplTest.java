@@ -1,8 +1,8 @@
-package com.transportcompany.serviceImplTest;
+package com.transportcompany.serviceImpl;
 
 import com.transportcompany.dto.PriceDTO;
 import com.transportcompany.exceptions.EntityNotFoundException;
-import com.transportcompany.serviceImplTest.impl.PriceServiceImpl;
+import com.transportcompany.serviceImpl.impl.PriceServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
