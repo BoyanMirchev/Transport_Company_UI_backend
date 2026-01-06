@@ -1,5 +1,6 @@
 package com.transportcompany.dto;
 
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -13,8 +14,14 @@ import java.math.BigDecimal;
 public class TicketDTO {
 
     private Long id;
+    @NotBlank
+    @Size(min = 2, max = 100)
     private String name;
-    private BigDecimal price;     // amount от Price
+
+    @NotNull
+    @Positive
+    @Digits(integer = 10, fraction = 2)
+    private BigDecimal price;
 
 
 }             // BigDecimal

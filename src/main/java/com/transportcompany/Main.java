@@ -62,7 +62,7 @@ public class Main {
         // 5. Vehicle
         VehicleDTO vehicle = vehicleService.create(
                 VehicleDTO.builder()
-                        .registrationNumber("CB3374BE")
+                        .registrationNumber("CB4378BE")
                         .type(VehicleType.Truck)
                         .capacityTons(5.0)
                         .companyId(company.getId())
@@ -130,6 +130,9 @@ public class Main {
 
         System.out.println("Transport created with ID = " + transport.getId());
     }
+
+
+    //     Валидация и на DTO моделите трябва да има!!!
 
 
 
