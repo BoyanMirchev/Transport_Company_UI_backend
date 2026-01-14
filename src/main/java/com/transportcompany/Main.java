@@ -62,7 +62,7 @@ public class Main {
         // 5. Vehicle
         VehicleDTO vehicle = vehicleService.create(
                 VehicleDTO.builder()
-                        .registrationNumber("CB4378BE")
+                        .registrationNumber("CB4378BA")
                         .type(VehicleType.Truck)
                         .capacityTons(5.0)
                         .companyId(company.getId())
